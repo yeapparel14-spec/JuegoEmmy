@@ -56,6 +56,15 @@ export const content = {
         color: 'from-gray-800 to-red-900',
         wide: true,
       },
+      {
+        id: 'valdrath',
+        emoji: '🏰',
+        titulo: 'Valdrath',
+        descripcion: 'Novela visual épica · Elige tu destino',
+        color: 'from-gray-900 to-violet-950',
+        wide: true,
+        destacado: true,
+      },
     ],
   },
 

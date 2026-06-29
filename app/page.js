@@ -39,26 +39,64 @@ export default function Home() {
       <main className="relative z-10 flex-1 px-5 pb-14 max-w-sm mx-auto w-full">
         <div className="grid grid-cols-2 gap-4">
           {hub.juegos.map((juego, i) => (
-            <Link href={`/${juego.id}`} key={juego.id} className={`block ${juego.wide ? 'col-span-2' : ''}`}>
-              <div
-                className="game-card p-5 h-full flex flex-col items-center text-center"
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                {/* Gradient icon badge */}
+            <Link
+              href={`/${juego.id}`}
+              key={juego.id}
+              className={`block ${juego.wide ? 'col-span-2' : ''}`}
+            >
+              {/* Tarjeta especial (destacado) para Valdrath */}
+              {juego.destacado ? (
                 <div
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${juego.color}
-                               flex items-center justify-center text-2xl shadow-md mb-3
-                               transition-transform duration-300 group-hover:scale-110`}
+                  className="game-card px-5 py-5 h-full flex items-center gap-4 relative overflow-hidden"
+                  style={{ animationDelay: `${i * 80}ms` }}
                 >
-                  {juego.emoji}
+                  {/* Glow de fondo para la tarjeta Valdrath */}
+                  <div
+                    className="absolute inset-0 pointer-events-none opacity-30"
+                    style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(139,92,246,0.35) 0%, transparent 65%)' }}
+                    aria-hidden="true"
+                  />
+                  <div
+                    className={`relative flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${juego.color}
+                                 flex items-center justify-center text-3xl shadow-lg`}
+                  >
+                    {juego.emoji}
+                  </div>
+                  <div className="relative text-left">
+                    <h2 className="font-playfair text-lg font-bold text-rosa-900 leading-tight tracking-wide">
+                      {juego.titulo}
+                    </h2>
+                    <p className="text-rosa-400 text-xs mt-0.5 font-light">{juego.descripcion}</p>
+                    <p className="text-violet-400 text-[10px] mt-1.5 font-medium tracking-wide">
+                      ✦ NOVELA VISUAL · HISTORIA ÉPICA
+                    </p>
+                  </div>
                 </div>
-                <h2 className="font-playfair text-base font-semibold text-rosa-900 leading-tight">
-                  {juego.titulo}
-                </h2>
-                <p className="text-rosa-400 text-xs mt-1 font-light">
-                  {juego.descripcion}
-                </p>
-              </div>
+              ) : (
+                /* Tarjeta estándar (todos los demás juegos) */
+                <div
+                  className={`game-card p-5 h-full flex items-center text-center
+                               ${juego.wide ? 'flex-row gap-4' : 'flex-col'}`}
+                  style={{ animationDelay: `${i * 80}ms` }}
+                >
+                  <div
+                    className={`bg-gradient-to-br ${juego.color}
+                                 flex items-center justify-center text-2xl shadow-md flex-shrink-0
+                                 transition-transform duration-300
+                                 ${juego.wide ? 'w-14 h-14 rounded-2xl' : 'w-14 h-14 rounded-2xl mb-3'}`}
+                  >
+                    {juego.emoji}
+                  </div>
+                  <div className={juego.wide ? 'text-left' : 'text-center'}>
+                    <h2 className="font-playfair text-base font-semibold text-rosa-900 leading-tight">
+                      {juego.titulo}
+                    </h2>
+                    <p className="text-rosa-400 text-xs mt-1 font-light">
+                      {juego.descripcion}
+                    </p>
+                  </div>
+                </div>
+              )}
             </Link>
           ))}
         </div>
