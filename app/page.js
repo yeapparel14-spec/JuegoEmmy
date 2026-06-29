@@ -39,7 +39,7 @@ export default function Home() {
       <main className="relative z-10 flex-1 px-5 pb-14 max-w-sm mx-auto w-full">
         <div className="grid grid-cols-2 gap-4">
           {hub.juegos.map((juego, i) => (
-            <Link href={`/${juego.id}`} key={juego.id} className="block">
+            <Link href={`/${juego.id}`} key={juego.id} className={`block ${juego.wide ? 'col-span-2' : ''}`}>
               <div
                 className="game-card p-5 h-full flex flex-col items-center text-center"
                 style={{ animationDelay: `${i * 80}ms` }}

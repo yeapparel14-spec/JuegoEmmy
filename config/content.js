@@ -48,6 +48,14 @@ export const content = {
         descripcion: 'Toca para una sorpresa',
         color: 'from-rosa-500 to-dorado-400',
       },
+      {
+        id: 'dragones',
+        emoji: '🐉',
+        titulo: 'Jinetes del Fuego',
+        descripcion: 'Batalla épica de dragones',
+        color: 'from-gray-800 to-red-900',
+        wide: true,
+      },
     ],
   },
 
@@ -143,6 +151,114 @@ export const content = {
         respuesta: 3,
       },
     ],
+  },
+
+  // ─── Juego: Dragones ─────────────────────────────────────
+  dragones: {
+    titulo: 'Jinetes del Fuego',
+    subtitulo: 'La batalla por los cielos comienza',
+    textoSeleccion: 'Elige tu Jinete',
+    textoSubseleccion: '¿A quién montarás en la batalla épica?',
+    botonRevancha: '⚔️ Pelear de nuevo',
+    botonCambiarPersonaje: '🐉 Cambiar jinete',
+    textoCooldown: (n) => `🔥 Enfriando (${n})`,
+
+    // ─── PERSONAJES — edita nombre, dragón, descripción y stats ──
+    // gradient/borderColor son colores CSS para las tarjetas
+    personajes: [
+      {
+        id: 'zael',
+        nombre: 'Zael Vorn',
+        dragon: 'Ignareth',
+        descripcion: 'Jinete implacable del norte ardiente. Alto poder de ataque.',
+        dragonEmoji: '🔴',
+        gradient: 'linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%)',
+        borderColor: '#991b1b',
+        glowColor: 'rgba(239,68,68,0.3)',
+        ataque: 85,
+        defensa: 45,
+        fuego: 75,
+      },
+      {
+        id: 'lyrindeth',
+        nombre: 'Lyrindeth',
+        dragon: 'Solcinder',
+        descripcion: 'Hija del sol, maestra de las llamas doradas. Magia equilibrada.',
+        dragonEmoji: '🌟',
+        gradient: 'linear-gradient(135deg, #451a03 0%, #78350f 100%)',
+        borderColor: '#92400e',
+        glowColor: 'rgba(245,158,11,0.3)',
+        ataque: 65,
+        defensa: 65,
+        fuego: 82,
+      },
+      {
+        id: 'korrax',
+        nombre: 'Korrax',
+        dragon: 'Embrath',
+        descripcion: 'El escudo viviente de la fortaleza negra. Defensa máxima.',
+        dragonEmoji: '⚫',
+        gradient: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+        borderColor: '#334155',
+        glowColor: 'rgba(100,116,139,0.3)',
+        ataque: 70,
+        defensa: 88,
+        fuego: 55,
+      },
+      {
+        id: 'vaelith',
+        nombre: 'Vaelith',
+        dragon: 'Sylvara',
+        descripcion: 'Maestra del fuego arcano de las sombras. Fuego devastador.',
+        dragonEmoji: '💜',
+        gradient: 'linear-gradient(135deg, #2e1065 0%, #4c1d95 100%)',
+        borderColor: '#6d28d9',
+        glowColor: 'rgba(139,92,246,0.3)',
+        ataque: 55,
+        defensa: 55,
+        fuego: 95,
+      },
+    ],
+
+    // ─── RIVAL (controlado por la máquina) ───────────────────────
+    rival: {
+      nombre: 'Lord Morvak',
+      dragon: 'Keldrath',
+      titulo: 'Señor del Abismo',
+      dragonEmoji: '🖤',
+      ataque: 72,
+      defensa: 65,
+      fuego: 72,
+    },
+
+    // ─── HABILIDADES ───────────────────────────────────────────────
+    habilidades: {
+      atacar:   { nombre: 'Atacar',             emoji: '⚔️', cooldown: 0 },
+      fuego:    { nombre: 'Aliento de Fuego',   emoji: '🔥', cooldown: 3 },
+      defender: { nombre: 'Defender',            emoji: '🛡️', cooldown: 0 },
+    },
+
+    // ─── MENSAJES DE COMBATE — puedes editar el texto ─────────────
+    // (son funciones porque llevan nombres y daño dinámico)
+    mensajesCombate: {
+      atacarJugador:  (nombre, dragon, dano) => `⚔️ ${nombre} ordena a ${dragon} atacar — ¡${dano} de daño!`,
+      fuegoJugador:   (nombre, dragon, dano) => `🔥 ${dragon} suelta su aliento de fuego — ¡${dano} de daño!`,
+      defenderJugador:(nombre) => `🛡️ ${nombre} levanta su escudo, ¡listo para el golpe!`,
+      atacarRival:    (nombre, dragon, dano) => `💀 ${dragon} ataca furiosamente — ¡${dano} de daño!`,
+      fuegoRival:     (nombre, dragon, dano) => `🖤 ${dragon} escupe fuego oscuro — ¡${dano} de daño!`,
+      defenderRival:  (nombre) => `🛡️ ${nombre} se prepara para recibir el impacto…`,
+      bloqueado: '(¡tu escudo absorbe gran parte del golpe!)',
+      inicio: (nombre, dragon) => `¡La batalla comienza! ${nombre} y ${dragon} están listos.`,
+      reinicio: (nombre, dragon) => `¡Ronda nueva! ${nombre} y ${dragon} vuelven con todo.`,
+    },
+
+    // ─── PANTALLAS DE VICTORIA / DERROTA ─────────────────────────
+    victoria: '¡VICTORIA! ¡Los cielos son tuyos, gran jinete!',
+    derrota: 'Caíste en batalla… pero los valientes siempre se levantan.',
+
+    // ─── MENSAJE ROMÁNTICO (aparece solo al ganar) ────────────────
+    mensajeVictoria:
+      'Igual que conquistaste los cielos hoy, conquistaste mi corazón desde el primer día. Eres mi heroína y mi aventura favorita. 💕',
   },
 
   // ─── Sorpresa: Mensajes de amor ───────────────────────────

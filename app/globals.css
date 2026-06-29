@@ -153,6 +153,45 @@ main {
   to   { opacity: 1; transform: translateY(0);   }
 }
 
+/* ── Dragon game: screen shake ──────────────────────────────── */
+@keyframes shakeScreen {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  12%  { transform: translate(-7px, 2px) rotate(-0.5deg); }
+  25%  { transform: translate(6px, -3px) rotate(0.4deg); }
+  37%  { transform: translate(-5px, 2px) rotate(-0.3deg); }
+  50%  { transform: translate(5px, -1px) rotate(0.3deg); }
+  62%  { transform: translate(-3px, 1px) rotate(-0.2deg); }
+  75%  { transform: translate(3px, -1px) rotate(0.2deg); }
+  87%  { transform: translate(-1px, 1px); }
+}
+
+.shake {
+  animation: shakeScreen 0.44s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* ── Dragon game: fire burst particles ──────────────────────── */
+@keyframes fireBurst {
+  0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+  50%  { opacity: 0.9; }
+  100% { transform: translateY(-80px) scale(0.2) rotate(25deg); opacity: 0; }
+}
+
+.fire-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: fireBurst 0.75s ease-out forwards;
+}
+
+/* ── Dragon game: ember glow pulse ─────────────────────────── */
+@keyframes emberGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(239, 68, 68, 0.3); }
+  50%       { box-shadow: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.2); }
+}
+
+.ember-glow {
+  animation: emberGlow 2s ease-in-out infinite;
+}
+
 /* ── Scrollbar ───────────────────────────────────────────────── */
 ::-webkit-scrollbar       { width: 5px; }
 ::-webkit-scrollbar-track { background: #FFF0F3; }
