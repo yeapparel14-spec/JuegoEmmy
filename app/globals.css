@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100dvh;
+    background: linear-gradient(145deg, #FFF0F3 0%, #FFE8EF 40%, #FFF8F2 100%);
+    background-attachment: fixed;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    color: #4A1528;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-gradient-to-r from-rosa-600 to-rosa-400
+           text-white font-semibold py-3 px-7 rounded-2xl
+           shadow-md shadow-rosa-200
+           hover:shadow-lg hover:shadow-rosa-300 hover:scale-[1.03]
+           active:scale-95
+           transition-all duration-200
+           select-none cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-white text-rosa-700 font-medium py-2.5 px-5 rounded-xl
+           border border-rosa-200 shadow-sm
+           hover:bg-rosa-50 hover:border-rosa-300 hover:shadow-md
+           active:scale-95
+           transition-all duration-200
+           select-none cursor-pointer;
+  }
+
+  .game-card {
+    @apply bg-white rounded-2xl shadow-md shadow-rosa-100
+           border border-rosa-100
+           hover:shadow-xl hover:shadow-rosa-200
+           hover:-translate-y-1 hover:border-rosa-300
+           active:scale-[0.98]
+           transition-all duration-300
+           cursor-pointer overflow-hidden;
+  }
+
+  .page-header {
+    @apply text-center pt-10 pb-4 px-4;
+  }
+
+  .page-title {
+    @apply font-playfair text-3xl md:text-4xl font-bold text-rosa-900;
+  }
+
+  .page-subtitle {
+    @apply text-rosa-400 text-sm mt-1 font-light;
+  }
+
+  .status-pill {
+    @apply inline-block px-5 py-2.5 rounded-2xl text-sm font-medium
+           bg-white border border-rosa-100 text-rosa-700 shadow-sm
+           transition-all duration-300;
+  }
+}
+
+/* ── Card flip 3-D ─────────────────────────────────────────── */
+.card-3d-wrapper {
+  perspective: 700px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-cover,
+.card-reveal {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-reveal {
+  transform: rotateY(180deg);
+}
+
+/* ── Floating hearts animation ──────────────────────────────── */
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) rotate(-8deg) scale(1);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-115vh) rotate(12deg) scale(0.7);
+    opacity: 0;
+  }
+}
+
+.heart-float {
+  animation: floatHeart linear infinite;
+}
+
+/* ── Confetti ────────────────────────────────────────────────── */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-30px) rotate(0deg) scaleX(1);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(640deg) scaleX(-1);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  animation: confettiFall linear forwards;
+}
+
+/* ── Smooth page entrance ───────────────────────────────────── */
+main {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #FFF0F3; }
+::-webkit-scrollbar-thumb { background: #FF8FAB; border-radius: 4px; }
